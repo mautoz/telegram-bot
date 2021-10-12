@@ -124,10 +124,39 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
+# Another way to call
+def handle_message(update, context):
+    text = str(update.message.text).lower()
+    if ("bunnymen" in text) or ("echo" in text):
+        update.message.reply_text(
+            "Echo & The Bunnymen - The Killing Moon\nhttps://youtu.be/LWz0JC7afNQ"
+        )
+    elif ("tears" in text) or ("fears" in text):
+        update.message.reply_text(
+            "Tears For Fears - Head Over Heels\nhttps://youtu.be/CsHiG-43Fzg"
+        )
+    elif ("oingo" in text) or ("boingo" in text):
+        update.message.reply_text("Oingo Boingo - Stay\nhttps://youtu.be/DwRnW89EsxI")
+    elif "joy" in text:
+        update.message.reply_text(
+            "Joy Division - Love Will Tear Us Apart\nhttps://youtu.be/zuuObGsB0No"
+        )
+    elif "gary" in text or ("mad world" in text):
+        update.message.reply_text(
+            "Gary Jules - Mad World\nhttps://youtu.be/PvPkLG-tvzM"
+        )
+    elif "inxs" in text:
+        update.message.reply_text(
+            "INXS - Never Tear Us Apart\nhttps://youtu.be/AIBv2GEnXlc"
+        )
+
+
 def main():
     """Start the bot."""
     # Here is where you will put your token
-    updater = Updater("Insert your token here", use_context=True)
+    updater = Updater(
+        "2075448870:AAF7BkSkirQLbHEdgz1LC1fjMVX9dSBT25U", use_context=True
+    )
     dp = updater.dispatcher
 
     # My commands
@@ -140,9 +169,7 @@ def main():
     dp.add_handler(CommandHandler("gary", gary))
     dp.add_handler(CommandHandler("inxs", inxs))
     dp.add_handler(CommandHandler("random", random_sound))
-
-    # If you type an unknown command echo will be called.
-    dp.add_handler(MessageHandler(Filters.text, echo))
+    dp.add_handler(MessageHandler(filters=Filters.text, callback=handle_message))
 
     # Errors
     dp.add_error_handler(error)
