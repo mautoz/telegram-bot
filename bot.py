@@ -154,9 +154,7 @@ def handle_message(update, context):
 def main():
     """Start the bot."""
     # Here is where you will put your token
-    updater = Updater(
-        "2075448870:AAF7BkSkirQLbHEdgz1LC1fjMVX9dSBT25U", use_context=True
-    )
+    updater = Updater("Insert here your token", use_context=True)
     dp = updater.dispatcher
 
     # My commands
